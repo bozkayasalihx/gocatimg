@@ -80,7 +80,7 @@ func decode(buf []byte) []image.Image {
 		var highestY int
         
 
-        // identify all frame of gif and truns max, min of width and hight of all frames
+        //NOTE: identify all frame of gif and truns max, min of width and hight of all frames
 
 		for _, img := range gifImage.Image {
 			if img.Rect.Min.X < lowestX {

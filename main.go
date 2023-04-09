@@ -102,9 +102,7 @@ func decode(buf []byte) []image.Image {
 
 		overPaintImage := image.NewRGBA(image.Rect(0, 0, imgWidth, imgHeight))
 
-        //NOTE: overWrite the rbga with old  
 		draw.Draw(overPaintImage, overPaintImage.Bounds(), gifImage.Image[0], image.Point{}, draw.Src)
-
 		for _, srcImg := range gifImage.Image {
 			draw.Draw(overPaintImage, overPaintImage.Bounds(), srcImg, image.Point{}, draw.Over)
 			frame := image.NewRGBA(image.Rect(0, 0, imgWidth, imgHeight))

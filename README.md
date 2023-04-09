@@ -1,1 +1,1 @@
-** display image on your terminal 
+## display image on your terminal 

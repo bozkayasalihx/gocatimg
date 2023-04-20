@@ -26,7 +26,6 @@ const RESIZE_FACTOR_Y = 2
 const RESIZE_FACTOR_X = 1
 const DEFAULT_TERM_COLS = 80
 const DEFAULT_TERM_ROWS = 24
-const FPS = 15
 
 const ANSI_CURSOR_UP = "\x1B[%dA"
 const ANSI_CURSOR_HIDE = "\x1B[?25l"
@@ -239,7 +238,15 @@ func print(frames [][]string) {
 	frameCount := len(frames)
 
 	if frameCount == 1 {
-		os.Stdout.WriteString(strings.Join(frames[0], ""))
+        var allInnerFrames string
+        for _, frame := range frames[0] {
+            allInnerFrames += frame;
+        }
+        _, err := os.Stdout.WriteString(allInnerFrames);
+        if err != nil {
+            os.Stdout.WriteString(strings.Join(frames[0], ""))
+        }
+
 	} else {
 		c := make(chan os.Signal, 1)
 		signal.Notify(c, os.Interrupt)
@@ -268,7 +275,11 @@ func print(frames [][]string) {
 	os.Stdout.WriteString(ANSI_CURSOR_SHOW)
 }
 
+
+var FPS int
+
 func main() {
+    flag.IntVar(&FPS, "fps", 15, "what frame you want")
 	flag.Parse()
 
 	input := ""

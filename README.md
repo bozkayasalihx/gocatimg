@@ -15,3 +15,10 @@ Display a local image
 ```
 imgcat path/to/image.png
 ```
+
+set fps rate 
+
+```
+imgcat -fps 30 path/to/image.gif 
+```
+
